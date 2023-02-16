@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision){
-        Debug.Log("Collision");
-        if(collision.name == "Enemy"){
-            Debug.Log("Collision with enemy");
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision){
+    //     Debug.Log("Collision");
+    //     if(collision.name == "Enemy"){
+    //         Destroy(this.gameObject);
+    //     }
+    // }
 }

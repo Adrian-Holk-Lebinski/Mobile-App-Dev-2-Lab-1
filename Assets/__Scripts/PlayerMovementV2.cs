@@ -13,7 +13,7 @@ public class PlayerMovementV2 : MonoBehaviour
     private float deceleration = 2f;
     private float maxSpeed = 8f;
     private Rigidbody2D rb;
-    const float XBOUND = 3.43f;
+    const float XBOUND = 11.89f;
     const float YBOUND = 6.5f;
     // Start is called before the first frame update
     void Start()
