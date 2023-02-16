@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float boundaryY = 7.2f, boundaryX = 4.15f; 
+    private float boundaryY = 7.2f, boundaryX = 17.99f; 
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()

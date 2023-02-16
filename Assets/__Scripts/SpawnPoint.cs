@@ -19,7 +19,7 @@ public class SpawnPoint : MonoBehaviour
         childrenList.Add(this.gameObject); //adding parent to spawnpoint list
         spawnPoints = childrenList.ToArray();
 
-         InvokeRepeating("SpawnEnemyWaves", 2.0f, 1.5f);
+         InvokeRepeating("SpawnEnemyWaves", 1.5f, 1.5f);
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class SpawnPoint : MonoBehaviour
     }
     void SpawnEnemyWaves()
     {
-        int spawnIndex = Random.Range(0, 3);
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
         Enemy myEnemy = Instantiate(enemyPrefab);
         myEnemy.transform.position = spawnPoints[spawnIndex].transform.position;
 

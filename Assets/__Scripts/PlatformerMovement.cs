@@ -7,51 +7,31 @@ public class PlatformerMovement : MonoBehaviour
 {
     const float XBOUND = 11.89f;
     const float YBOUND = 6.5f;
-    [SerializeField] private InputActionReference movement;
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private float RunSpeed = 5f;
-    private Vector2 movementInput;
-    private Vector2 savedMoveInput;
-    private float currentSpeed;
-    private float acceleration = 2f;
-    private float deceleration = 2f;
-    private float maxSpeed = 8f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
 
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentSpeed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        movementInput = movement.action.ReadValue<Vector2>();
-
-        if (Input.GetButton("Jump"))
+        Vector3 offset = new Vector3(0, -0.95f, 0);
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position + offset, new Vector2(0.67f, 0.11f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        if (Input.GetButton("Jump") && isGrounded)
         {
             Jump();
         }
     }
     void FixedUpdate()
     {
-        // if (movementInput.magnitude > 0)
-        // {
-        //     savedMoveInput = movementInput;
-        //     currentSpeed += acceleration * maxSpeed * Time.deltaTime;
-        // }
-        // else
-        // {
-        //     currentSpeed -= deceleration * maxSpeed * Time.deltaTime;
-        // }
-        // currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
-        // Vector2 position = rb.position + savedMoveInput * currentSpeed * Time.deltaTime;
-        // position.x = Mathf.Clamp(position.x, -XBOUND, XBOUND);
-        // position.y = Mathf.Clamp(position.y, -YBOUND, YBOUND);
-        // transform.position = position;
-
         //Get Horizontal Movement 
         float hInput = Input.GetAxis("Horizontal");
         float xOffset = hInput * RunSpeed * Time.deltaTime;
@@ -63,8 +43,7 @@ public class PlatformerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        Vector2 jumpVelToAdd = new Vector2(0f, jumpSpeed);
-        rb.velocity += jumpVelToAdd;
+        rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -73,8 +52,9 @@ public class PlatformerMovement : MonoBehaviour
             Debug.Log("Collision");
         }
     }
-    void OnTriggerEnter2D(Collider2D collision){
-if (collision.gameObject.tag == "Enemy")
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
         }
