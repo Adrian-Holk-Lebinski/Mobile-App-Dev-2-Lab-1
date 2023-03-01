@@ -24,7 +24,7 @@ public class PlatformerMovement : MonoBehaviour
     void Update()
     {
         Vector3 offset = new Vector3(0, -0.95f, 0);
-        isGrounded = Physics2D.OverlapCapsule(groundCheck.position + offset, new Vector2(0.67f, 0.11f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position + offset, new Vector2(0.67f, 0.044f), CapsuleDirection2D.Horizontal, 0, groundLayer);
         if (Input.GetButton("Jump") && isGrounded)
         {
             Jump();

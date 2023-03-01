@@ -15,12 +15,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Platform
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Player
+  - Foreground
+  - Obstacle
+  - Collectable
+  - Interactable
   - 
   - 
   - 
