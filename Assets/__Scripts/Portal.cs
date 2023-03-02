@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Portal : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Portal : MonoBehaviour
     {
         if (whatHitMe.gameObject.tag == "Player")
         {
-            whatHitMe.transform.position += new Vector3(10, 0);
+            SceneManager.LoadSceneAsync(2); 
         }
     }
     // Start is called before the first frame update

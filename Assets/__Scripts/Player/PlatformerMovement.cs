@@ -12,11 +12,12 @@ public class PlatformerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
-
+    private UIManager UiManager;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        UiManager = GameObject.Find("GameController").GetComponent<UIManager>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -47,16 +48,14 @@ public class PlatformerMovement : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
-        {
-            Debug.Log("Collision");
-        }
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+            UiManager.UpdateLives();
+            Debug.Log("Hit Enemy");
         }
     }
 
