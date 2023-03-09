@@ -12,9 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private Image[] lives;
     private int livesLeft;
+    [SerializeField] private Sprite heartGone;
     // Start is called before the first frame update
     void Start()
     {
+        
         livesLeft = 3;
         playerScore = 0;
         scoreText.text = "Score: " + playerScore.ToString();
@@ -33,14 +35,17 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateLives()
     {
-        if (livesLeft > 0)
+        //if there is 1 heart and we have a collison, we reset
+        if (livesLeft > 1)
         {
-            Destroy(lives[livesLeft - 1]);
+            lives[livesLeft-1].sprite = heartGone;
             livesLeft -= 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {
             //game over, reset
+            Destroy(this.gameObject);
             SceneManager.LoadSceneAsync(3);
         }
     }

@@ -5,18 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject gameController;
 
     public void LoadScene(){
+        gameController.SetActive(true);
         SceneManager.LoadSceneAsync(1);
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

@@ -48,15 +48,11 @@ public class PlatformerMovement : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.tag == "Enemy")
         {
             UiManager.UpdateLives();
-            Debug.Log("Hit Enemy");
         }
     }
+
 
 }
